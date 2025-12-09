@@ -5,7 +5,7 @@ clear && printf "\033c"
 # -x = ausführbares Programm erzeugen,
 # -free = Free-Format akzeptieren (Code nicht an feste spalten gebunden), 
 # -o = Name des erzeugten Programms ("stundensatz")
-cobc -x -free -o stundensatz_kommentiert stundensatz_kommentiert.cbl
+cobc -x -free -o stundensatz_kommentiert.exe stundensatz_kommentiert.cbl
 
 # Das frisch erstellte COBOL-Programm starten
-./stundensatz_kommentiert
+./stundensatz_kommentiert.exe
