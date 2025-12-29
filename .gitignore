@@ -1,1 +1,4 @@
+# Ignore compiled COBOL output binary
 1-Lesson/stundensatz_aufgabe
+# macOS Finder metadata file. Safe to ignore
+.DS_Store
