@@ -1,18 +1,50 @@
 ## COBOL-Projekt / Gruppe 4
-Our workshop consists of two lessons, I and II. Each lesson includes practical examples, which are stored in this GitHub repository.
 
-# 📁 1-Lesson
-(Brief describtion, what 1-Lesson is about)
+Der Workshop besteht aus **drei Lektionen** mit praxisorientierten Aufgaben, die in diesem Repository abgelegt sind.
 
-# 📁 2-Lesson
-(Brief describtion, what 2-Lesson is about)
+**Hinweis:**  
+Ergänzende Hinweise und Erklärungen findest du in den **Vorlesungsfolien** (Todo: Finale Präsi hier hochladen & verlinken).
 
-# 📁 z-archive
-This folder is not relevant for the IWS workshop. If we created a concept that we later decided not to pursue, you will most likely find it archived here.
+---
 
-# Group 4 / An old programming language: COBOL
-- Ermir Zabergja
-- Finn Bingenheimer
-- Janie Lehmann
-- Johannes Pielmeier
+# 📁 1-Lesson  
+- Thema: Grundlegende COBOL-Programmierung
+- Ziel: Grundsyntax, Datenstrukturen und Compile-&-Run-Workflow verstehen.
+
+
+[➡️ Zur Lektion 1](./1-Lesson)
+
+
+---
+
+# 📁 2-Lesson  
+- Thema: Erweiterte COBOL-Programmierung
+- Ziel: Exception-Handling in COBOL erlernen... 
+
+[➡️ Zur Lektion 2](./2-Lesson)
+
+
+---
+
+
+# 📁 3-Lesson  
+- Thema (noch auszumachen). Vorschlag war: TicTacToe/ Zahlen raten.  
+- Ziel: Bisher aus dem Workshop erlerntes wird direkt in Praxis umgesetzt. 
+
+[➡️ Zur Lektion 3](./3-Lesson)
+
+
+---
+
+# 📁 z-archive  
+Archiv für Entwürfe und verworfene Ideen — **nicht relevant für den Workshop**.
+
+---
+
+# 👥 Gruppe 4 – *"Eine alte Programmiersprache: COBOL“*
+
+- Ermir Zabergja  
+- Finn Bingenheimer  
+- Janie Lehmann  
+- Johannes Pielmeier  
 - Yannick Yildirim
