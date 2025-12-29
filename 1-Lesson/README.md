@@ -1,23 +1,35 @@
-## I. Für die Lektion 1 relevante Dateien sind:
-1) stundensatz_aufgabe.cbl: Hier wird die Aufgabe bearbeitet - die Hauptdatei, in der der COBOL-Code geschrieben wird.
-2) stundensatz_loesung: Die Lösung zur ersten Aufgabe. Wir empfehlen jedoch, die Aufgabe selbstständig zu lösen, bevor ein Blick in die Lösung geworfen wird.
-3) BUCHUNGEN.DAT: Beispieldatei mit aufgebrachten Stunden je Mitarbeiter. Wird vom Programm eingelesen und verarbeitet.
+# 🧾 Lektion 1 – COBOL Einstieg 
+---
 
-## II. Was sind die anderen Dateien im Ordner? 
-4) compile-and-run.sh: Shell-Skript zum Compilen und Ausführen des COBOL-Programms.
-5) stundensatz_aufgabe: Unix-Datei, die der Compiler erzeugt hat, da die .cbl-Dateien nicht wie Skripte direkt gestartet werden können, sondern immer zuerst zu einer ausführbaren Unix-Datei übersetzt werden. 
-6) Readme.md: Diese Datei mit Anweisungen zur Aufgabe.
+## 1 Für Aufgabe relevante Dateien
 
-## III. Ausführung am eigenen BWLehrpool-Rechner
-Am BWLehrpool-Rechner:
-1.⁠ ⁠⁠Schritt: Führe mithilfe der Shell-Datei ausführen ( einfach jedesmal “./compile-and-run.sh“ fürs compilen).
+| Datei | Beschreibung |
+|--------|-------------|
+| [`stundensatz_aufgabe.cbl`](./stundensatz_aufgabe.cbl) | Hauptdatei – hier wird die Aufgabe gelöst und COBOL-Code geschrieben |
+| [`BUCHUNGEN.DAT`](./BUCHUNGEN.DAT) | Beispiel-Daten mit Stunden pro Mitarbeiter — wird vom Programm eingelesen |
+| [`stundensatz_loesung`](./stundensatz_loesung) | Beispiel-Lösung (erst nach eigener Bearbeitung anschauen!) |
 
-Am eigenen Rechner (Windows):
-...
+---
 
-Am eigenen Rechner (Mac):
-1.⁠ ⁠⁠Schritt: Lade die Erweiterung in VS Code herunter fürs Highlighting (https://marketplace.visualstudio.com/items?itemName=bitlang.cobol)
-2.⁠ ⁠⁠Schritt: Lade die GnuCOBOL-Erweiterung herunter (bei Mac: brew install gnu-cobol und checken, ob es funktioniert hat mit cobc -v).
-3.⁠ ⁠⁠Schritt: Führe mithilfe der Shell-Datei/ manuell aus (bei Mac: Shell-Script ausführbar machen mit “chmod +x compile-and-run.sh“, danach einfach jedesmal “./compile-and-run.sh“ fürs compilen).
+## 2 Weitere Dateien im Ordner
 
-Hinweis: Wir empfehlen die Ausführung am BWLehrpool-Rechner, da dort alle nötigen Programme bereits installiert sind und die Umgebung vorkonfiguriert ist.
+| Datei | Zweck |
+|--------|-------|
+| [`compile-and-run.sh`](./compile-and-run.sh) | Shell-Skript zum Kompilieren & Ausführen |
+| [`stundensatz_aufgabe`](./stundensatz_aufgabe) | Ausführbare Unix-Datei, erzeugt nach Compile-Vorgang |
+| [`README.md`](./README.md) | Diese Anleitung der Lektion 1 |
+
+---
+
+## 3 Ausführung
+BWLehrpool-Rechner bieten die einfachste Umgebung.
+
+1. Schritte auf BWLehrpool-Rechner...
+2. Im Terminal geben Sie folgenden Befehl ein:
+```bash
+./compile-and-run.sh
+```
+
+============================================
+
+Viel Erfolg mit der Aufgabe! 🚀
