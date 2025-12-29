@@ -63,7 +63,7 @@ BEGIN.
     PERFORM INITIALIZE-PROGRAM.
 
     *> -----------------------
-    *> #4.1 Einlesen bis EOF
+    *> Einlesen bis EOF
     *> -----------------------
     PERFORM UNTIL EOF-FLAG = "Y"
         READ BUCHUNGEN
@@ -80,7 +80,7 @@ BEGIN.
 
 
 *> ================================================================
-*> #5 Datei öffnen
+*> #4.1 Datei öffnen
 *> ================================================================
 INITIALIZE-PROGRAM.
     OPEN INPUT BUCHUNGEN.
@@ -89,7 +89,7 @@ INITIALIZE-PROGRAM.
 
 
 *> ================================================================
-*> #6 Verarbeitung einer Zeile
+*> #4.2 Verarbeitung einer Zeile
 *> ================================================================
 PROCESS-LINE.
     MOVE BUCHUNG-LINE(1:10)  TO MITARBEITER-VORNAME
@@ -103,14 +103,14 @@ PROCESS-LINE.
 
 
 *> ================================================================
-*> #7 Umsatz berechnen
+*> #4.3 Umsatz berechnen
 *> ================================================================
 BERECHNE-GESAMTUMSATZ.
     COMPUTE GESAMT-UMSATZ = ANZAHL-STUNDEN * FIRMA-STUNDENSATZ.
 
 
 *> ================================================================
-*> #8 Ausgabe formatieren
+*> #4.4 Ausgabe formatieren
 *> ================================================================
 PRINT-UMSATZ-PRO-MITARBEITER.
     MOVE MITARBEITER-VORNAME  TO PRINT-MITARBEITER-NAME(1:10)
@@ -124,7 +124,7 @@ PRINT-UMSATZ-PRO-MITARBEITER.
 
 
 *> ================================================================
-*> #9 Aufräumen und Gesamtsumme ausgeben
+*> #4.5 Aufräumen und Gesamtsumme ausgeben
 *> ================================================================
 CLEAN-UP.
     CLOSE BUCHUNGEN.
