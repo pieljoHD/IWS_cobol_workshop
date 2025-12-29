@@ -1,4 +1,4 @@
-# 🧾 Lektion 1 – COBOL Einstieg 
+# 🧾 Lektion 1 – Basic programming in COBOL 
 ---
 
 ## 1 Für Aufgabe relevante Dateien
