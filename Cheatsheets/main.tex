@@ -1,0 +1,73 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{tcolorbox}
+\usepackage{listings}
+\tcbuselibrary{listings,breakable}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{xcolor}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\setlength\parindent{0pt}
+\setlength{\parskip}{0.8em}
+\setlength{\fboxsep}{6pt}
+
+\definecolor{hellblau}{RGB}{173,216,230}
+
+\newtcolorbox{theorieSection}[2]{
+  colframe=#1,
+  colback=white,
+  coltitle=#1,
+  fonttitle=\bfseries,
+  title=#2
+}
+
+\newtcolorbox{cobolCodeSection}[2]{
+  colframe=#1,
+  colback=white,
+  coltitle=white,
+  fonttitle=\bfseries,
+  title=#2,
+  listing only,
+  listing options={
+    language=Cobol,
+    basicstyle=\ttfamily\small,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    tabsize=2,
+    breaklines=true
+  }
+}
+
+
+% color definitions for Cobol
+\lstdefinelanguage{Cobol}{
+  keywords={
+    FILE-CONTROL, SELECT, ASSIGN, ORGANIZATION IS, PIC, COMPUTE
+    ADD,SUBTRACT, MULTIPLY, DIVIDE, GIVING
+    },
+  sensitive=false,
+  comment=[l]{*>}
+  morecomment=[s]{*>}{\newline}
+}
+
+\lstset{
+  language=Cobol,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue}\bfseries,
+  commentstyle=\color{gray}\sffamily\small\itshape,
+  stringstyle=\color{orange},
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  stepnumber=1,
+  numbersep=5pt,
+  showspaces=false,
+  showstringspaces=false,
+  tabsize=2,
+  breaklines=true
+}
+
+
+\begin{document}
+
+\include{1-Lesson}
+
+\end{document}
