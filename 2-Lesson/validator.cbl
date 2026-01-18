@@ -27,7 +27,7 @@
 
        01 LINE-TRIM                   PIC X(256).
 
-       *> Eingabefelder (Semikolon-getrennt: Vorname;Nachname;Stunden;Gehalt;Geburtsdatum)
+       *> Eingabefelder: Vorname Nachname Stunden Gehalt Geburtsdatum (Leerzeichen-getrennt)
        01 WS-VORNAME                  PIC X(40).
        01 WS-NACHNAME                 PIC X(40).
        01 WS-STUNDEN-RAW              PIC X(30).
@@ -36,9 +36,9 @@
 
        01 WS-NAME-ZUS                 PIC X(90).
 
-       *> Hilfsvariablen für Prüfungen
+       *> Hilfsvariablen
        01 WS-I                        PIC 9(4) VALUE 0.
-       01 WS-J                        PIC 9(4) VALUE 0.
+       01 WS-J                        PIC 9(4) VALUE 1.
        01 WS-CNT                      PIC 9(4) VALUE 0.
        01 WS-ERR-FLAG                 PIC X VALUE "N".
 
@@ -81,19 +81,25 @@
                IF EOF-FLAG NOT = "Y"
                    ADD 1 TO ZEILEN-NR
                    MOVE FUNCTION TRIM(BUCHUNG-LINE) TO LINE-TRIM
+                   *> Tabs in Spaces wandeln (nur zur Sicherheit)
+                   INSPECT LINE-TRIM REPLACING ALL X"09" BY " "
+                   *> Leere Zeilen komplett überspringen
+                    IF LINE-TRIM = SPACES
+                    OR LENGTH OF FUNCTION TRIM(LINE-TRIM) = 0
+                        EXIT PERFORM CYCLE
+                    END-IF
 
-                   *> --- Felder splitten ---
+                   *> --- Felder per Leerzeichen splitten ---
                    MOVE SPACES TO WS-VORNAME WS-NACHNAME
                                   WS-STUNDEN-RAW WS-GEHALT-RAW WS-GEBURT-RAW
                    UNSTRING LINE-TRIM
-                       DELIMITED BY ";"
+                       DELIMITED BY ALL SPACE
                        INTO WS-VORNAME
                             WS-NACHNAME
                             WS-STUNDEN-RAW
                             WS-GEHALT-RAW
                             WS-GEBURT-RAW
                    END-UNSTRING
-                   *> Wenn deine Datei Leerzeichen-getrennt ist, ersetze oben: DELIMITED BY ALL SPACE
 
                    *> Namen zusammenbauen (für Ausgabe)
                    MOVE FUNCTION TRIM(WS-VORNAME) TO WS-NAME-ZUS
@@ -130,7 +136,7 @@
            GOBACK.
 
        *>--------------------------------------------------------------
-       *> PRUEFE-NAME: nur Buchstaben (inkl. Umlaute/ß), Leerzeichen, Bindestrich
+       *> PRUEFE-NAME
        *>--------------------------------------------------------------
        PRUEFE-NAME.
            MOVE FUNCTION TRIM(WS-NAME-ZUS) TO WS-NAME-ZUS
@@ -155,7 +161,7 @@
            EXIT PARAGRAPH.
 
        *>--------------------------------------------------------------
-       *> PRUEFE-STUNDEN: keine Buchstaben/Minus; erlaubt: Ziffern + [.,] (max. 1x)
+       *> PRUEFE-STUNDEN
        *>--------------------------------------------------------------
        PRUEFE-STUNDEN.
            MOVE FUNCTION TRIM(WS-STUNDEN-RAW) TO WS-STUNDEN-RAW
@@ -169,7 +175,7 @@
 
            MOVE LENGTH OF FUNCTION TRIM(WS-STUNDEN-RAW) TO WS-LEN
 
-           *> Buchstaben? (per Schleife, nicht INSPECT ALPHABETIC)
+           *> Buchstaben? (per Schleife)
            PERFORM VARYING WS-I FROM 1 BY 1 UNTIL WS-I > WS-LEN OR WS-ERR-FLAG = "Y"
                IF WS-STUNDEN-RAW(WS-I:1) ALPHABETIC
                    MOVE "Stundenanzahl" TO ARG-FELD
@@ -214,7 +220,7 @@
            EXIT PARAGRAPH.
 
        *>--------------------------------------------------------------
-       *> PRUEFE-GEHALT: Fehler, wenn negativ ODER alphanumerisch
+       *> PRUEFE-GEHALT
        *>--------------------------------------------------------------
        PRUEFE-GEHALT.
            MOVE FUNCTION TRIM(WS-GEHALT-RAW) TO WS-GEHALT-RAW
@@ -271,11 +277,11 @@
            EXIT PARAGRAPH.
 
        *>--------------------------------------------------------------
-       *> PRUEFE-GEBURTSDATUM: Format DD.MM.YYYY und realer Tag
+       *> PRUEFE-GEBURTSDATUM
        *>--------------------------------------------------------------
        PRUEFE-GEBURTSDATUM.
            MOVE FUNCTION TRIM(WS-GEBURT-RAW) TO WS-GEBURT-RAW
-           MOVE LENGTH OF WS-GEBURT-RAW TO WS-LEN
+           MOVE LENGTH OF FUNCTION TRIM(WS-GEBURT-RAW) TO WS-LEN
 
            IF WS-LEN NOT = 10
                MOVE "Geburtsdatum" TO ARG-FELD
@@ -364,9 +370,10 @@
            EXIT PARAGRAPH.
 
        *>--------------------------------------------------------------
-       *> LOG-ERROR: schreibt eine Fehlerzeile und erhoeht Zähler
+       *> LOG-ERROR
        *>--------------------------------------------------------------
        LOG-ERROR.
+           MOVE SPACES TO FEHLER-RECORD
            STRING
                "FEHLER in Zeile " ZEILEN-NR
                " | Feld: " FUNCTION TRIM(ARG-FELD)
