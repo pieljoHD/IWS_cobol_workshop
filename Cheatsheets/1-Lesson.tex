@@ -1,0 +1,50 @@
+\begin{center}
+{\LARGE\bfseries COBOL Cheat Sheet}\\[0.5em]
+{\large Hilfestellungen für Aufgabe 1}
+\end{center}
+
+\vspace{1em}
+
+\begin{cobolCodeSection}{cyan!60}{Datei definieren}
+\begin{lstlisting}[language=Cobol] 
+  FILE-CONTROL. 
+    SELECT VARIABLENNAME
+      ASSIGN TO "DATEINAME"
+      ORGANIZATION IS EINLESEART. 
+
+    FILE SECTION.
+      FD VARIABLENNAME.
+        01 BUCHUNG-LINE PIC X(80).
+\end{lstlisting}
+\end{cobolCodeSection}
+
+\begin{cobolCodeSection}{cyan!60}{Datei öffnen und schlie\ss en}
+\begin{lstlisting}[language=Cobol] 
+  OPEN INPUT VARIABLENNAME.
+  CLOSE BUCHUNGEN.
+\end{lstlisting}
+\end{cobolCodeSection}
+
+
+\begin{cobolCodeSection}{cyan!60}{Eine Zeile einlesen}
+\begin{lstlisting}[language=Cobol] 
+  READ BUCHUNGEN
+  END-READ
+\end{lstlisting}
+\end{cobolCodeSection}
+
+
+\begin{cobolCodeSection}{cyan!60}{Berechnungen}
+\begin{lstlisting}[language=Cobol] 
+  COMPUTE VARIABLENNAME = X + Y * Z.
+\end{lstlisting}
+\end{cobolCodeSection}
+
+\begin{cobolCodeSection}{cyan!60}{Mathematische Functionen}
+\begin{lstlisting}[language=Cobol] 
+  ADD X TO Y GIVING SUMXY.
+  SUBTRACT Y FROM X GIVING SUBTRACTION.
+  MULTIPLY X BY Y GIVING PRODUCT.
+  DIVIDE X BY Y GIVING QUOTIENT.
+\end{lstlisting}
+\end{cobolCodeSection}
