@@ -103,14 +103,14 @@ PROCESS-LINE.
 
 
 *> ================================================================
-*> #4.3 Umsatz berechnen
+*> #4.2.1 Umsatz berechnen
 *> ================================================================
 BERECHNE-GESAMTUMSATZ.
     COMPUTE GESAMT-UMSATZ = ANZAHL-STUNDEN * FIRMA-STUNDENSATZ.
 
 
 *> ================================================================
-*> #4.4 Ausgabe formatieren
+*> #4.2.2 Ausgabe formatieren
 *> ================================================================
 PRINT-UMSATZ-PRO-MITARBEITER.
     MOVE MITARBEITER-VORNAME  TO PRINT-MITARBEITER-NAME(1:10)
