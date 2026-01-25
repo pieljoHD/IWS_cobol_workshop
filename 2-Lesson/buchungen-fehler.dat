@@ -1,0 +1,15 @@
+Lukas     Becker      1O5   3100        23.11.1990 ; Fehler: Stundenanzahl - alphanumerisch (Buchstaben enthalten)
+Mia       Wagner      170   28O0        05.09.1988 ; Fehler: Monatsgehalt - alphanumerisch (Buchstaben enthalten)
+Jonas     Keller      180   -3500       11.01.1992 ; Fehler: Monatsgehalt - negativ
+Lea       Hoffmann    150   3000        32.01.1991 ; Fehler: Geburtsdatum - unmoegliches Datum (z. B. 31.02.)
+Sophie    Bauer       165   3100        31.02.1990 ; Fehler: Geburtsdatum - unmoegliches Datum (z. B. 31.02.)
+Leon      Weber       155   3000        1990-05-20 ; Fehler: Geburtsdatum - falsches Format (Trenner '.' fehlt)
+Emma      Koch        160   3O50        18.03.1989 ; Fehler: Monatsgehalt - alphanumerisch (Buchstaben enthalten)
+Marie     Vogel       150   -2500       20.12.1992 ; Fehler: Monatsgehalt - negativ
+Jan       Richter     16O   2700        14.11.1991 ; Fehler: Stundenanzahl - alphanumerisch (Buchstaben enthalten)
+Sarah     Wolf        170   3100        30-01-1990 ; Fehler: Geburtsdatum - falsches Format (Trenner '.' fehlt)
+Noah      Krause      150   3000        12/12/1990 ; Fehler: Geburtsdatum - falsches Format (Trenner '.' fehlt)
+Elias     Peters      160   3100        31.09.1992 ; Fehler: Geburtsdatum - unmoegliches Datum (z. B. 31.02.)
+Ella      Jung        160   -3200       25.12.1991 ; Fehler: Monatsgehalt - negativ
+Selina    Horn        180   31O0        18.02.1994 ; Fehler: Monatsgehalt - alphanumerisch (Buchstaben enthalten)
+Timo      Schreiber   00x   3050        12.12.1991 ; Fehler: Stundenanzahl - alphanumerisch (Buchstaben enthalten)
