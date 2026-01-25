@@ -9,3 +9,7 @@ cobc -x -free -o stundensatz_kommentiert.exe stundensatz_kommentiert.cbl
 
 # Das frisch erstellte COBOL-Programm starten
 ./stundensatz_kommentiert.exe
+cobc -x -free -o stundensatz_aufgabe stundensatz_aufgabe.cbl
+
+# Das frisch erstellte COBOL-Programm starten
+./stundensatz_aufgabe
