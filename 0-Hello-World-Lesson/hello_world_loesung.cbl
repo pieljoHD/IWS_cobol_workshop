@@ -10,28 +10,19 @@
                
                
                *> ================================================================
-               *> #2 ENVIRONMENT DIVISION – Welche Dateien benutze ich?
+               *> #2 ENVIRONMENT DIVISION
                *> ================================================================
                ENVIRONMENT DIVISION.
                INPUT-OUTPUT SECTION.
-               FILE-CONTROL.
-                   *> Für Hello World benötigen wir noch keine Datei.
                
                
                *> ================================================================
                *> #3 DATA DIVISION – Was speichere ich?
                *> ================================================================
-               DATA DIVISION.
+               DATA DIVISION.               
                
                *> ---------------------------
-               *> #3.1 FILE SECTION
-               *> ---------------------------
-               FILE SECTION.
-                   *> Noch keine Datei (kommt in Lesson 1).
-               
-               
-               *> ---------------------------
-               *> #3.2 WORKING-STORAGE
+               *> #3.1 WORKING-STORAGE
                *> ---------------------------
                WORKING-STORAGE SECTION.
                
