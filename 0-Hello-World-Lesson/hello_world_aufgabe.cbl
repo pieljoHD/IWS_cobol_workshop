@@ -33,13 +33,13 @@
     *> #4.1 Aufgabe 0.1 – Hello World
     *> ------------------------------------------------------------
     *> TODO:
-    *> - Gib "Hello COBOL World!" aus (DISPLAY)
+    *> - Gib "Hello COBOL World!" aus
 
 
     *> ------------------------------------------------------------
     *> #4.2 Aufgabe 0.2 – Hello World mit Variablen
     *> ------------------------------------------------------------
-    *> Ziel: Erste Variablen setzen und ausgeben (MOVE, DISPLAY)
+    *> Ziel: Erste Variablen setzen und ausgeben
     *> TODO:
     *> - Setze Werte in VORNAME, NACHNAME, STUNDEN
     *> - Gib die Daten aus:
@@ -48,3 +48,4 @@
 
 
     STOP RUN.
+
