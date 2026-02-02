@@ -10,7 +10,7 @@ IDENTIFICATION DIVISION.
 ENVIRONMENT DIVISION.
 INPUT-OUTPUT SECTION.
 FILE-CONTROL.
-*> Eingabe- und Fehlerdatei deklarieren.
+*> Nur Eingabedatei deklarieren.
 
 
 *> ================================================================
@@ -22,7 +22,7 @@ DATA DIVISION.
 *> #3.1 FILE SECTION
 *> ---------------------------
 FILE SECTION.
-*> Puffer für Eingabe- und Fehlerzeilen.
+*> Puffer für Eingabezeile.
 
 *> ---------------------------
 *> #3.2 WORKING-STORAGE SECTION
@@ -37,17 +37,17 @@ WORKING-STORAGE SECTION.
 PROCEDURE DIVISION.
 
 MAIN.
-*> Hauptablauf: öffnen, lesen, prüfen, loggen, schließen.
+*> Hauptablauf: öffnen, lesen, prüfen, ausgeben, schließen.
 
 
 *> ================================================================
 *> #5 Datei-Handling
 *> ================================================================
 OPEN-FILES.
-*> Dateien öffnen.
+*> Datei öffnen.
 
 CLOSE-FILES.
-*> Dateien schließen.
+*> Datei schließen.
 
 READ-NEXT.
 *> Zeile lesen.
@@ -66,7 +66,7 @@ BUILD-NAME-DISPLAY.
 *> Anzeige-Name bilden.
 
 HANDLE-OK.
-*> OK-Fall zählen/anzeigen.
+*> OK auf Konsole ausgeben.
 
 
 *> ================================================================
@@ -89,4 +89,4 @@ PRUEFE-GEBURTSDATUM.
 *> #8 Logging / Fehlerausgabe
 *> ================================================================
 LOG-ERROR.
-*> Fehler in Datei schreiben.
+*> Fehler auf Konsole anzeigen.
