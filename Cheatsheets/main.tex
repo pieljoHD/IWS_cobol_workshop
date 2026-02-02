@@ -12,13 +12,20 @@
 
 \definecolor{hellblau}{RGB}{173,216,230}
 
-\newtcolorbox{theorieSection}[2]{
+\newtcolorbox{cobolTableSection}[2]{
   colframe=#1,
   colback=white,
-  coltitle=#1,
+  coltitle=white,
   fonttitle=\bfseries,
-  title=#2
+  title=#2,
+  boxrule=0.8pt,
+  arc=2mm,
+  left=6pt,
+  right=6pt,
+  top=6pt,
+  bottom=6pt
 }
+
 
 \newtcolorbox{cobolCodeSection}[2]{
   colframe=#1,
@@ -67,7 +74,7 @@
 
 
 \begin{document}
-
+\include{0-Lesson}
 \include{1-Lesson}
 \include{2-Lesson}
 \newpage
