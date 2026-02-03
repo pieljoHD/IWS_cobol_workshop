@@ -41,25 +41,19 @@ FD BUCHUNGEN.
 WORKING-STORAGE SECTION.
 
 01 MITARBEITER-VORNAME  PIC X(10).
-01 MITARBEITER-NACHNAME PIC X(10).
-01 ANZAHL-STUNDEN       PIC 9(3).
-
-01 FIRMA-STUNDENSATZ PIC 9(3) VALUE 150.
-01 GESAMT-UMSATZ     PIC 9(6)V99.
-01 GESAMT-SUMME      PIC 9(7)V99 VALUE 0.
 
 *> Formatierte Ausgabe je Mitarbeiter
 01 FORMAT-UMSATZ-PRO-MITARBEITER.
-    02 PRINT-MITARBEITER-NAME   PIC X(20).
-    02 FILLER                   PIC X.
-    02 PRINT-ANZAHL-STUNDEN     PIC 9(3).
-    02 FILLER                   PIC X.
-    02 PRINT-MENGE-UMSATZ       PIC $***,***.99.
+    05 PRINT-MITARBEITER-NAME   PIC X(20).
+    05 FILLER                   PIC X.
 
 01 EOF-FLAG PIC X VALUE "N".
 
 *> ---------------------------
-*> TODO: Ergänze bei Bedarf weitere Variablen (z.B. Zwischensummen, Zähler)
+*> TODO: Achtung hier fehlen noch Variablen
+*> MITARBEITER-NACHNAME, ANZAHL-STUNDEN, GESAMT-UMSATZ
+*> FIRMA-STUNDENSATZ, GESAMT-UMSATZ, GESAMT-SUMME
+*> PRINT-ANZAHL-STUNDEN, PRINT-MENGE-UMSATZ
 *> ---------------------------
 
 
@@ -140,5 +134,4 @@ CLEAN-UP.
     CLOSE BUCHUNGEN.
     *> TODO: Gib eine Trennlinie aus
     *> TODO: Gib die Gesamtsumme formatiert aus (z.B. "Gesamtumsatz: ...")
-    *> Optional: Erfolgsnachricht ausgeben
-    *> DISPLAY "JOB SUCCESSFULLY COMPLETED".
+    *> TODO: Erfolgsnachricht ausgeben (DISPLAY "JOB SUCCESSFULLY COMPLETED".)                            
