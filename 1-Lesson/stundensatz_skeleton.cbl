@@ -1,3 +1,8 @@
+*> ================================================================
+*> SKELETON: Bitte ergänzen Sie die mit TODO markierten Bereiche.
+*> Ziel: Datei einlesen, Umsatz pro Mitarbeitenden berechnen, Gesamtsumme ausgeben.
+*> ================================================================
+
 *> ================================================================     
 *> #1 IDENTIFICATION DIVISION – Wer bin ich?                       
 *> ================================================================
@@ -53,6 +58,10 @@ WORKING-STORAGE SECTION.
 
 01 EOF-FLAG PIC X VALUE "N".
 
+*> ---------------------------
+*> TODO: Ergänze bei Bedarf weitere Variablen (z.B. Zwischensummen, Zähler)
+*> ---------------------------
+
 
 *> ================================================================
 *> #4 PROCEDURE DIVISION – Was soll das Programm tun?
@@ -65,15 +74,15 @@ BEGIN.
     *> -----------------------
     *> Einlesen bis EOF
     *> -----------------------
-    PERFORM UNTIL EOF-FLAG = "Y"
-        READ BUCHUNGEN
-            AT END MOVE "Y" TO EOF-FLAG
-        END-READ
+    *> TODO: Lese Datensätze aus BUCHUNGEN bis Dateiende (EOF)
+    *>   - READ BUCHUNGEN
+    *>   - AT END EOF-FLAG setzen
+    *>   - sonst PROCESS-LINE ausführen
+    *> Hinweis: Die konkrete READ/IF-Logik soll von den Teilnehmenden ergänzt werden.
 
-        IF EOF-FLAG NOT = "Y"
-            PERFORM PROCESS-LINE
-        END-IF
-    END-PERFORM
+    *> PERFORM UNTIL EOF-FLAG = "Y"
+    *>     ...
+    *> END-PERFORM
 
     PERFORM CLEAN-UP.
     STOP RUN.
@@ -84,43 +93,44 @@ BEGIN.
 *> ================================================================
 INITIALIZE-PROGRAM.
     OPEN INPUT BUCHUNGEN.
-    DISPLAY "Name                  Std   Umsatz".
-    DISPLAY "--------------------------------------------".
+    *> TODO: Gib eine Tabellenüberschrift aus (z.B. Name | Std | Umsatz)
+    *> TODO: Gib eine Trennlinie aus
 
 
 *> ================================================================
 *> #4.2 Verarbeitung einer Zeile
 *> ================================================================
 PROCESS-LINE.
-    MOVE BUCHUNG-LINE(1:10)  TO MITARBEITER-VORNAME
-    MOVE BUCHUNG-LINE(11:10) TO MITARBEITER-NACHNAME
-    MOVE BUCHUNG-LINE(21:3)  TO ANZAHL-STUNDEN
+    *> TODO: Zerlege BUCHUNG-LINE in Vorname, Nachname und Stunden
+    *>   - Vorname aus den ersten 10 Zeichen
+    *>   - Nachname aus den nächsten 10 Zeichen
+    *>   - Stunden aus den nächsten 3 Zeichen
 
-    PERFORM BERECHNE-GESAMTUMSATZ
-    PERFORM PRINT-UMSATZ-PRO-MITARBEITER
+    *> TODO: Berechne den Umsatz für den Datensatz
+    *> PERFORM BERECHNE-GESAMTUMSATZ
 
-    ADD GESAMT-UMSATZ TO GESAMT-SUMME.
+    *> TODO: Gib die formatierte Zeile aus
+    *> PERFORM PRINT-UMSATZ-PRO-MITARBEITER
+
+    *> TODO: Addiere den Umsatz zur Gesamtsumme
 
 
 *> ================================================================
 *> #4.2.1 Umsatz berechnen
 *> ================================================================
 BERECHNE-GESAMTUMSATZ.
-    COMPUTE GESAMT-UMSATZ = ANZAHL-STUNDEN * FIRMA-STUNDENSATZ.
+    *> TODO: Berechne GESAMT-UMSATZ aus ANZAHL-STUNDEN und FIRMA-STUNDENSATZ
 
 
 *> ================================================================
 *> #4.2.2 Ausgabe formatieren
 *> ================================================================
 PRINT-UMSATZ-PRO-MITARBEITER.
-    MOVE MITARBEITER-VORNAME  TO PRINT-MITARBEITER-NAME(1:10)
-    MOVE MITARBEITER-NACHNAME TO PRINT-MITARBEITER-NAME(11:10)
-    MOVE ANZAHL-STUNDEN       TO PRINT-ANZAHL-STUNDEN
-    MOVE GESAMT-UMSATZ        TO PRINT-MENGE-UMSATZ
+    *> TODO: Fülle PRINT-MITARBEITER-NAME (Vorname + Nachname)
+    *> TODO: Setze PRINT-ANZAHL-STUNDEN
+    *> TODO: Setze PRINT-MENGE-UMSATZ
 
-    DISPLAY PRINT-MITARBEITER-NAME " "
-            PRINT-ANZAHL-STUNDEN  " "
-            PRINT-MENGE-UMSATZ.
+    *> TODO: Gib die formatierte Zeile aus (Name, Stunden, Umsatz)
 
 
 *> ================================================================
@@ -128,7 +138,7 @@ PRINT-UMSATZ-PRO-MITARBEITER.
 *> ================================================================
 CLEAN-UP.
     CLOSE BUCHUNGEN.
-    DISPLAY "--------------------------------------------".
-    MOVE GESAMT-SUMME TO PRINT-MENGE-UMSATZ.
-    DISPLAY "Gesamtumsatz:          " PRINT-MENGE-UMSATZ.
-    DISPLAY "JOB SUCCESSFULLY COMPLETED".
+    *> TODO: Gib eine Trennlinie aus
+    *> TODO: Gib die Gesamtsumme formatiert aus (z.B. "Gesamtumsatz: ...")
+    *> Optional: Erfolgsnachricht ausgeben
+    *> DISPLAY "JOB SUCCESSFULLY COMPLETED".
