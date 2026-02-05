@@ -29,7 +29,9 @@ FILE SECTION.
 *> ---------------------------
 WORKING-STORAGE SECTION.
 *> Flags, Zähler, Felder, Hilfsvariablen.
-
+*> Eingabefelder: Vorname Nachname Stunden Gehalt Geburtsdatum (Leerzeichen-getrennt)
+*> Hilfsvariablen (Zähler, Datum, etc.)
+*> Erlaubte Zeichen für Namen (Buchstaben + Leerzeichen + Bindestrich)
 
 *> ================================================================
 *> #4 PROCEDURE DIVISION – Hauptprogramm
@@ -51,6 +53,7 @@ CLOSE-FILES.
 
 READ-NEXT.
 *> Zeile lesen.
+
 
 
 *> ================================================================
