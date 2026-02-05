@@ -6,3 +6,4 @@
 1-Lesson/stundensatz_aufgabe
 # macOS Finder metadata file. Safe to ignore
 .DS_Store
+*.exe
