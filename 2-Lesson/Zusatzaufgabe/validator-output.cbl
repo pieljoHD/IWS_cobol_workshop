@@ -53,7 +53,8 @@
 
        *> Erlaubte Zeichen für Namen (Buchstaben + Leerzeichen + Bindestrich)
        01 ALLOWED-NAME-CHARS          PIC X(200)
-          VALUE "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz ÄÖÜäöüß-".
+          VALUE "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"-
+          "ÄÖÜäöüß-".
 
        *> Argumente für LOG-ERROR
        01 ARG-FELD                    PIC X(30).
@@ -90,7 +91,8 @@
                    ELSE
                        *> --- Felder per Leerzeichen splitten ---
                        MOVE SPACES TO WS-VORNAME WS-NACHNAME
-                                      WS-STUNDEN-RAW WS-GEHALT-RAW WS-GEBURT-RAW
+                                      WS-STUNDEN-RAW WS-GEHALT-RAW 
+                                      WS-GEBURT-RAW
                        UNSTRING LINE-TRIM
                            DELIMITED BY ALL SPACE
                            INTO WS-VORNAME
@@ -122,9 +124,12 @@
 
                        IF WS-ERR-FLAG = "N"
                            DISPLAY "OK: " FUNCTION TRIM(WS-NAME-ZUS)
-                                   " | Stunden=" FUNCTION TRIM(WS-STUNDEN-RAW)
-                                   " | Gehalt=" FUNCTION TRIM(WS-GEHALT-RAW)
-                                   " | Geburtsdatum=" FUNCTION TRIM(WS-GEBURT-RAW)
+                                   " | Stunden=" 
+                                   FUNCTION TRIM(WS-STUNDEN-RAW)
+                                   " | Gehalt=" 
+                                   FUNCTION TRIM(WS-GEHALT-RAW)
+                                   " | Geburtsdatum=" 
+                                   FUNCTION TRIM(WS-GEBURT-RAW)
                            ADD 1 TO CNT-OK
                        END-IF
                    END-IF
@@ -182,7 +187,8 @@
                    UNTIL WS-I > WS-LEN OR WS-ERR-FLAG = "Y"
                IF WS-STUNDEN-RAW(WS-I:1) ALPHABETIC
                    MOVE "Stundenanzahl" TO ARG-FELD
-                   MOVE "alphanumerisch (Buchstaben enthalten)" TO ARG-MSG
+                   MOVE "alphanumerisch (Buchstaben enthalten)"
+                   TO ARG-MSG
                    PERFORM LOG-ERROR
                    MOVE "Y" TO WS-ERR-FLAG
                END-IF
@@ -249,7 +255,8 @@
                    UNTIL WS-I > WS-LEN OR WS-ERR-FLAG = "Y"
                IF WS-GEHALT-RAW(WS-I:1) ALPHABETIC
                    MOVE "Monatsgehalt" TO ARG-FELD
-                   MOVE "alphanumerisch (Buchstaben enthalten)" TO ARG-MSG
+                   MOVE "alphanumerisch (Buchstaben enthalten)"
+                   TO ARG-MSG
                    PERFORM LOG-ERROR
                    MOVE "Y" TO WS-ERR-FLAG
                END-IF
@@ -295,7 +302,8 @@
                EXIT PARAGRAPH
            END-IF
 
-           IF WS-GEBURT-RAW(3:1) NOT = "." OR WS-GEBURT-RAW(6:1) NOT = "."
+           IF WS-GEBURT-RAW(3:1) NOT = "." OR WS-GEBURT-RAW(6:1) NOT =
+           "."
                MOVE "Geburtsdatum" TO ARG-FELD
                MOVE "falsches Format (Trenner '.' fehlt)" TO ARG-MSG
                PERFORM LOG-ERROR
