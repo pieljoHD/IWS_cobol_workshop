@@ -9,15 +9,6 @@ Erweitern Sie das bereitgestellte COBOL-Programm so, dass für jeden Datensatz a
 - Der Firmen-Stundensatz liegt bei 150
 - Erzeugte Ausgabe soll identisch zur gezeigten Konsolenausgabe sein (siehe Präsentationtsfolien) 
 
-### Ausführung
-BWLehrpool-Rechner bieten die einfachste Umgebung.
-
-1. Schritte auf BWLehrpool-Rechner...
-2. Im Terminal geben Sie folgenden Befehl ein:
-```bash
-./compile-and-run.sh
-```
-
 ============================================
 
 Viel Erfolg mit der Aufgabe! 🚀

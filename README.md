@@ -7,37 +7,53 @@ Ergänzende Hinweise und Erklärungen findest du in den **Vorlesungsfolien** (To
 
 ---
 
-# 📁 1-Lesson  
-- Thema: Grundlegende COBOL-Programmierung
-- Ziel: Grundsyntax, Datenstrukturen und Compile-&-Run-Workflow verstehen.
+# 📁 0-Lesson  
 
+[➡️ Zur Lektion 0](./0-Lesson)
+
+---
+
+# 📁 1-Lesson  
 
 [➡️ Zur Lektion 1](./1-Lesson)
-
 
 ---
 
 # 📁 2-Lesson  
-- Thema: Erweiterte COBOL-Programmierung
-- Ziel: Exception-Handling in COBOL erlernen... 
 
 [➡️ Zur Lektion 2](./2-Lesson)
 
-
 ---
 
-
 # 📁 3-Lesson  
-- Thema (noch auszumachen). Vorschlag war: TicTacToe/ Zahlen raten.  
-- Ziel: Bisher aus dem Workshop erlerntes wird direkt in Praxis umgesetzt. 
 
 [➡️ Zur Lektion 3](./3-Lesson)
-
 
 ---
 
 # 📁 z-archive  
 Archiv für Entwürfe und verworfene Ideen — **nicht relevant für den Workshop**.
+
+---
+
+### Ausführung einer Lektion
+Wir bitten um die Nutzung der Hochschulrechner, da hier die benötigte COBOL-Umgebung bereits vorinstalliert ist.
+
+1. Öffen Sie das Terminal.
+2. Navigieren Sie im Terminal zu einer Lektion X (z.B. `cd X-Lesson`).
+3. Geben Sie folgenden Befehl ein, um das COBOL-Programm zu kompilieren:
+```bash
+Cobc -x hello_world_loesung.cbl
+```
+4. Führen Sie das kompilierte Programm mit folgendem Befehl aus:
+```bash
+./[Name der ausführbaren Datei]
+```
+
+Hinweis:
+- `X` steht für die Lektion, die Sie bearbeiten möchten (z.B. `0`,`1`,`2`,`3` oder `4`).
+- Mit `ls` können Sie die Dateien im aktuellen Verzeichnis auflisten.
+- Der Name der ausführbaren Datei entspricht der COBOL-Quelldatei ohne die `.cbl`-Endung (z.B. `hello_world_loesung`).
 
 ---
 
