@@ -67,7 +67,7 @@
 % Aufgabe 2b – Validierung & Fehlerprotokollierung
 % ============================================================
 
-\begin{cobolCodeSection}{orange!60}{Elektronische Zeichenprüfung (INSPECT TALLYING)}
+\begin{cobolCodeSection}{teal!60}{Elektronische Zeichenprüfung (INSPECT TALLYING)}
 \begin{lstlisting}[language=Cobol]
   MOVE 0 TO WS-CNT.
 
@@ -81,7 +81,7 @@
 \end{lstlisting}
 \end{cobolCodeSection}
 
-\begin{cobolCodeSection}{orange!60}{Numerische Prüfung}
+\begin{cobolCodeSection}{teal!60}{Numerische Prüfung}
 \begin{lstlisting}[language=Cobol]
   IF WS-STUNDEN(1:1) = "-"
      *> Negative Werte nicht zulässig
@@ -95,7 +95,7 @@
 \end{lstlisting}
 \end{cobolCodeSection}
 
-\begin{cobolCodeSection}{orange!60}{Mehrfach-Trenner prüfen}
+\begin{cobolCodeSection}{teal!60}{Mehrfach-Trenner prüfen}
 \begin{lstlisting}[language=Cobol]
   MOVE 0 TO WS-CNT.
   INSPECT WS-STUNDEN TALLYING WS-CNT FOR ALL ".".
@@ -106,7 +106,7 @@
 \end{lstlisting}
 \end{cobolCodeSection}
 
-\begin{cobolCodeSection}{orange!60}{Datum zerlegen und prüfen}
+\begin{cobolCodeSection}{teal!60}{Datum zerlegen und prüfen}
 \begin{lstlisting}[language=Cobol]
   MOVE WS-GEBURT(1:2) TO WS-TAG.
   MOVE WS-GEBURT(4:2) TO WS-MONAT.
@@ -139,7 +139,7 @@
 \end{lstlisting}
 \end{cobolCodeSection}
 
-\begin{cobolCodeSection}{orange!60}{Fehlerlog schreiben (STRING → WRITE)}
+\begin{cobolCodeSection}{teal!60}{Fehlerlog schreiben (STRING → WRITE)}
 \begin{lstlisting}[language=Cobol]
   MOVE SPACES TO FEHLER-RECORD.
 
@@ -154,7 +154,7 @@
 \end{lstlisting}
 \end{cobolCodeSection}
 
-\begin{cobolCodeSection}{orange!60}{Fehlerzähler erhöhen}
+\begin{cobolCodeSection}{teal!60}{Fehlerzähler erhöhen}
 \begin{lstlisting}[language=Cobol]
   ADD 1 TO CNT-ERROR.
 \end{lstlisting}

@@ -5,7 +5,7 @@
 
 \vspace{1em}
 
-\begin{cobolTableSection}{cyan!60}{COBOL Datentypen}
+\begin{cobolTableSection}{green!60}{COBOL Datentypen}
 \centering
 \begin{tabular}{|l|l|l|l|}
 \hline
@@ -20,7 +20,7 @@ Signiert & PIC S9(n) & 01 SALDO PIC S9(7)V99. & Mit Vorzeichen +/- \\
 \end{tabular}
 \end{cobolTableSection}
 
-\begin{cobolCodeSection}{cyan!60}{Variablen}
+\begin{cobolCodeSection}{green!60}{Variablen}
 \begin{lstlisting}[language=Cobol] 
     01 CUSTOMER-DATA.
         05 CUSTOMER-NAME PIC X(30) VALUE SPACES.
@@ -33,7 +33,7 @@ Signiert & PIC S9(n) & 01 SALDO PIC S9(7)V99. & Mit Vorzeichen +/- \\
 Zuweisung von Werten zu Variablen.
 \end{cobolCodeSection}
 
-\begin{cobolTableSection}{cyan!60}{Ablaufsteuerung}
+\begin{cobolTableSection}{green!60}{Ablaufsteuerung}
 \centering
 \begin{tabular}{|l|l|l|}
 \hline
@@ -55,7 +55,7 @@ STOP RUN & Programm beenden & STOP RUN. \\
 \end{cobolTableSection}
 
 
-\begin{cobolCodeSection}{cyan!60}{Methoden}
+\begin{cobolCodeSection}{green!60}{Methoden}
 \begin{lstlisting}[language=Cobol] 
     PROCEDURE DIVISION.
         BEGIN.
@@ -71,7 +71,7 @@ STOP RUN & Programm beenden & STOP RUN. \\
 
 
 
-\begin{cobolTableSection}{cyan!60}{Cobol Funktionen}
+\begin{cobolTableSection}{green!60}{Cobol Funktionen}
 \centering
 \begin{tabular}{|l|l|p{7cm}|}
 \hline
@@ -91,7 +91,7 @@ LOWER-CASE(str) & Kleinbuchstaben & MOVE FUNCTION LOWER-CASE(TEXT) TO LOWER. \\
 \end{cobolTableSection}
 
 
-\begin{cobolCodeSection}{cyan!60}{Vollständiges Beispiel}
+\begin{cobolCodeSection}{green!60}{Vollständiges Beispiel}
 \begin{lstlisting}[language=Cobol] 
     IDENTIFICATION DIVISION.
     PROGRAM-ID. WORKSHOP-DEMO.

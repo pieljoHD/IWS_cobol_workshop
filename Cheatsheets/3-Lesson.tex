@@ -5,7 +5,7 @@
 
 \vspace{1em}
 
-\begin{cobolCodeSection}{cyan!60}{Arrays in Cobol}
+\begin{cobolCodeSection}{orange!60}{Arrays in Cobol}
 \begin{lstlisting}[language=Cobol] 
   01 FirstArray
     05 ITEM OCCURS 10 TIMES PIC x VALUE "0"
@@ -18,28 +18,28 @@ Jedes Element hat als Defaultwert "0".
 So wird auf das dritte Element eines Array zugegriffen.
 \end{cobolCodeSection}
 
-\begin{cobolCodeSection}{cyan!60}{Consolen Eingaben in Cobol}
+\begin{cobolCodeSection}{orange!60}{Consolen Eingaben in Cobol}
 \begin{lstlisting}[language=Cobol] 
   ACCEPT EINGABE.
 \end{lstlisting}
 Mit \textit{ACCEPT} wird die Eingabe des Users in die Variable EINGABE geschrieben.
 \end{cobolCodeSection}
 
-\begin{cobolCodeSection}{cyan!60}{Systemcalls in Cobol}
+\begin{cobolCodeSection}{orange!60}{Systemcalls in Cobol}
 \begin{lstlisting}[language=Cobol] 
   CALL "SYSTEM" USING "cat 'hello world'"
 \end{lstlisting}
 Mit \textit{CALL "SYSTEM"} können direkt im Programm Komandozeilen Befehle aufgerufen werden
 \end{cobolCodeSection}
 
-\begin{cobolCodeSection}{cyan!60}{Floating Points in Cobol}
+\begin{cobolCodeSection}{orange!60}{Floating Points in Cobol}
 \begin{lstlisting}[language=Cobol] 
   01 FLOATING_POINT PIC 9V9(4)
 \end{lstlisting}
 Definiert eine Kommzahl mit vier Nachkommastellen
 \end{cobolCodeSection}
 
-\begin{cobolCodeSection}{cyan!60}{Zufallszahlen in Cobol}
+\begin{cobolCodeSection}{orange!60}{Zufallszahlen in Cobol}
 \begin{lstlisting}[language=Cobol] 
   COMPUTE RANDOM_NUMBER = FUNCTION RANDOM
 \end{lstlisting}
