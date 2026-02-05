@@ -1,11 +1,10 @@
 ## COBOL-Projekt / Gruppe 4
 
-Der Workshop besteht aus **drei Lektionen** mit praxisorientierten Aufgaben, die in diesem Repository abgelegt sind.
+Der Informatik-Workshop COBOL besteht aus **vier Lektionen** mit praxisorientierten Aufgaben.
 
 **Hinweis:**  
-Ergänzende Hinweise und Erklärungen findest du in den **Vorlesungsfolien** (Todo: Finale Präsi hier hochladen & verlinken).
-
----
+Die [Präsentationsfolien](./IWS-COBOL-Präsentation.pdf) werden vorgestellt. Zur Unterstützung bei der Bearbeitung der Aufgabe steht Ihnen das große
+[Cheatsheet](./Cheatsheet.pdf) parallel zur Verfügung.
 
 # 📁 0-Lesson  
 
