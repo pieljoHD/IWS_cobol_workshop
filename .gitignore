@@ -2,6 +2,7 @@
 *.aux
 *.log
 # Ignore compiled COBOL output binary
+0-Lesson/hello_world_aufgabe
 1-Lesson/stundensatz_aufgabe
 # macOS Finder metadata file. Safe to ignore
 .DS_Store
