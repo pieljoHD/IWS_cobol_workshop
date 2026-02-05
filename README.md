@@ -22,8 +22,6 @@ Nutzen Sie zur Bearbeitung der Lektionen gerne das Cheatsheet und die Präsentat
 ---
 
 ### Ausführung einer Lektion
-Wir bitten um die Nutzung der Hochschulrechner, da hier die benötigte COBOL-Umgebung bereits vorinstalliert ist.
-
 1. Öffnen Sie das Terminal.
 2. Navigieren Sie im Terminal zu einer Lektion (z.B. `cd 0-Lesson`).
 3. Geben Sie folgenden Befehl ein, um das COBOL-Programm zu kompilieren:
