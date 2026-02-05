@@ -1,0 +1,161 @@
+\begin{center}
+{\LARGE\bfseries COBOL Cheat Sheet}\\[0.5em]
+{\large Hilfestellungen für Aufgabe 2 (a und b)}
+\end{center}
+
+\vspace{1em}
+
+% ============================================================
+% Aufgabe 2a – Einlesen, Aufbereiten, Zerlegen
+% ============================================================
+
+\begin{cobolCodeSection}{teal!60}{Leerzeilen behandeln und Tabs entfernen}
+\begin{lstlisting}[language=Cobol]
+  MOVE FUNCTION TRIM(BUCHUNG-LINE) TO LINE-TRIM.
+  INSPECT LINE-TRIM REPLACING ALL X"09" BY " ".   *> Tabs -> Spaces
+
+  IF LINE-TRIM = SPACES
+     OR LENGTH OF FUNCTION TRIM(LINE-TRIM) = 0
+     CONTINUE   *> Leere Zeile überspringen
+  END-IF.
+\end{lstlisting}
+\end{cobolCodeSection}
+
+\begin{cobolCodeSection}{teal!60}{Strings per UNSTRING zerlegen}
+\begin{lstlisting}[language=Cobol]
+  MOVE SPACES TO WS-VORNAME WS-NACHNAME
+                 WS-STUNDEN WS-GEHALT WS-GEBURT.
+
+  UNSTRING LINE-TRIM
+      DELIMITED BY ALL SPACE
+      INTO WS-VORNAME
+           WS-NACHNAME
+           WS-STUNDEN
+           WS-GEHALT
+           WS-GEBURT
+  END-UNSTRING.
+\end{lstlisting}
+\end{cobolCodeSection}
+
+\begin{cobolCodeSection}{teal!60}{Strings zusammenbauen (STRING)}
+\begin{lstlisting}[language=Cobol]
+  MOVE FUNCTION TRIM(WS-VORNAME) TO WS-NAME-ZUS.
+  MOVE 1 TO WS-J.
+
+  STRING
+      " " DELIMITED BY SIZE
+      FUNCTION TRIM(WS-NACHNAME) DELIMITED BY SIZE
+      INTO WS-NAME-ZUS
+      WITH POINTER WS-J
+  END-STRING.
+\end{lstlisting}
+\end{cobolCodeSection}
+
+\begin{cobolCodeSection}{teal!60}{Längenprüfung eines Strings}
+\begin{lstlisting}[language=Cobol]
+  MOVE LENGTH OF FUNCTION TRIM(WS-GEBURT) TO WS-LEN.
+
+  IF WS-LEN NOT = 10
+     *> Fehlerfall behandeln
+  END-IF.
+\end{lstlisting}
+\end{cobolCodeSection}
+
+
+
+% ============================================================
+% Aufgabe 2b – Validierung & Fehlerprotokollierung
+% ============================================================
+
+\begin{cobolCodeSection}{orange!60}{Elektronische Zeichenprüfung (INSPECT TALLYING)}
+\begin{lstlisting}[language=Cobol]
+  MOVE 0 TO WS-CNT.
+
+  INSPECT ALLOWED-NAME-CHARS
+     TALLYING WS-CNT
+     FOR ALL WS-NAME-ZUS(WS-I:1).
+
+  IF WS-CNT = 0
+     *> Sonderzeichen gefunden
+  END-IF.
+\end{lstlisting}
+\end{cobolCodeSection}
+
+\begin{cobolCodeSection}{orange!60}{Numerische Prüfung}
+\begin{lstlisting}[language=Cobol]
+  IF WS-STUNDEN(1:1) = "-"
+     *> Negative Werte nicht zulässig
+  END-IF.
+
+  IF WS-WERT NUMERIC
+     *> gültige Zahl
+  ELSE
+     *> Fehler: nicht numerisch
+  END-IF.
+\end{lstlisting}
+\end{cobolCodeSection}
+
+\begin{cobolCodeSection}{orange!60}{Mehrfach-Trenner prüfen}
+\begin{lstlisting}[language=Cobol]
+  MOVE 0 TO WS-CNT.
+  INSPECT WS-STUNDEN TALLYING WS-CNT FOR ALL ".".
+
+  IF WS-CNT > 1
+     *> zu viele Dezimalpunkte
+  END-IF.
+\end{lstlisting}
+\end{cobolCodeSection}
+
+\begin{cobolCodeSection}{orange!60}{Datum zerlegen und prüfen}
+\begin{lstlisting}[language=Cobol]
+  MOVE WS-GEBURT(1:2) TO WS-TAG.
+  MOVE WS-GEBURT(4:2) TO WS-MONAT.
+  MOVE WS-GEBURT(7:4) TO WS-JAHR.
+
+  IF WS-MONAT < 1 OR WS-MONAT > 12
+     *> Ungültiger Monat
+  END-IF.
+
+  *> Max. Tageszahl je Monat (inkl. Schaltjahrregel)
+  EVALUATE WS-MONAT
+    WHEN 2
+       IF (FUNCTION MOD(WS-JAHR 400) = 0)
+       OR (FUNCTION MOD(WS-JAHR 4) = 0
+           AND FUNCTION MOD(WS-JAHR 100) NOT = 0)
+          MOVE 29 TO WS-TAG-MAX
+       ELSE
+          MOVE 28 TO WS-TAG-MAX
+       END-IF
+    WHEN 4  MOVE 30 TO WS-TAG-MAX
+    WHEN 6  MOVE 30 TO WS-TAG-MAX
+    WHEN 9  MOVE 30 TO WS-TAG-MAX
+    WHEN 11 MOVE 30 TO WS-TAG-MAX
+    WHEN OTHER MOVE 31 TO WS-TAG-MAX
+  END-EVALUATE.
+
+  IF WS-TAG < 1 OR WS-TAG > WS-TAG-MAX
+      *> Unmoegliches Datum
+  END-IF.
+\end{lstlisting}
+\end{cobolCodeSection}
+
+\begin{cobolCodeSection}{orange!60}{Fehlerlog schreiben (STRING → WRITE)}
+\begin{lstlisting}[language=Cobol]
+  MOVE SPACES TO FEHLER-RECORD.
+
+  STRING
+      FUNCTION TRIM(LINE-TRIM)
+      " ; Fehler: " FUNCTION TRIM(ARG-FELD)
+      " - "         FUNCTION TRIM(ARG-MSG)
+      INTO FEHLER-RECORD
+  END-STRING.
+
+  WRITE FEHLER-RECORD.
+\end{lstlisting}
+\end{cobolCodeSection}
+
+\begin{cobolCodeSection}{orange!60}{Fehlerzähler erhöhen}
+\begin{lstlisting}[language=Cobol]
+  ADD 1 TO CNT-ERROR.
+\end{lstlisting}
+\end{cobolCodeSection}

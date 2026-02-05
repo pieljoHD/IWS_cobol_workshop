@@ -1,0 +1,119 @@
+\begin{center}
+{\LARGE\bfseries COBOL Cheat Sheet}\\[0.5em]
+{\large Cobol Grundsyntax}
+\end{center}
+
+\vspace{1em}
+
+\begin{cobolTableSection}{cyan!60}{COBOL Datentypen}
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Typ} & \textbf{Format} & \textbf{Beispiel} & \textbf{Beschreibung} \\
+\hline
+Alphanumerisch & PIC X(n) & 01 NAME PIC X(30). & Beliebige Zeichen \\
+Alphabetisch & PIC A(n) & 01 LAND PIC A(20). & Nur Buchstaben \\
+Numerisch & PIC 9(n) & 01 ALTER PIC 9(3). & Nur Ziffern \\
+Dezimal & PIC 9(n)V9(m) & 01 PREIS PIC 9(5)V99. & Virtueller Dezimalpunkt \\
+Signiert & PIC S9(n) & 01 SALDO PIC S9(7)V99. & Mit Vorzeichen +/- \\
+\hline
+\end{tabular}
+\end{cobolTableSection}
+
+\begin{cobolCodeSection}{cyan!60}{Variablen}
+\begin{lstlisting}[language=Cobol] 
+    01 CUSTOMER-DATA.
+        05 CUSTOMER-NAME PIC X(30) VALUE SPACES.
+        05 CUSTOMER-AGE PIC 9(3) VALUE 0.
+\end{lstlisting}
+01 ist die Hauptebene. 05, 10, 15 die Unterebenen.
+\begin{lstlisting}[language=Cobol] 
+    MOVE "Emma" TO CUSTOMER-NAME. oder MOVE 25 TO CUSTOMER-AGE.
+\end{lstlisting}
+Zuweisung von Werten zu Variablen.
+\end{cobolCodeSection}
+
+\begin{cobolTableSection}{cyan!60}{Ablaufsteuerung}
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Statement} & \textbf{Bedeutung} & \textbf{Beispiel} \\
+\hline
+DISPLAY & Ausgabe & DISPLAY "Eingabe (JA/NEIN):". \\
+\hline
+ACCEPT & Eingabe & ACCEPT ANTWORT. \\
+\hline
+MOVE & Zuweisung & MOVE "AKTIV" TO STATUS. \\
+\hline
+IF & Bedingung & IF ANTWORT = "JA" \dots ELSE \dots END-IF. \\
+\hline
+PERFORM & Paragraph aufrufen & PERFORM CALC-ABSCHNITT. \\
+\hline
+STOP RUN & Programm beenden & STOP RUN. \\
+\hline
+\end{tabular}
+\end{cobolTableSection}
+
+
+\begin{cobolCodeSection}{cyan!60}{Methoden}
+\begin{lstlisting}[language=Cobol] 
+    PROCEDURE DIVISION.
+        BEGIN.
+            DISPLAY "Programm gestartet.".
+            PERFORM CALC-SUM.
+        STOP RUN.
+
+        CALC-SUM.
+            MOVE 100 TO SUMME.
+            DISPLAY "Summe: " SUMME.
+\end{lstlisting}
+\end{cobolCodeSection}
+
+
+
+\begin{cobolTableSection}{cyan!60}{Cobol Funktionen}
+\centering
+\begin{tabular}{|l|l|p{7cm}|}
+\hline
+\textbf{Funktion} & \textbf{Beschreibung} & \textbf{Beispiel} \\
+\hline
+CURRENT-DATE & Aktuelles Datum/Uhrzeit & DISPLAY FUNCTION CURRENT-DATE. \\
+\hline
+LENGTH(var) & Länge eines Feldes & MOVE FUNCTION LENGTH(NAME) TO LEN. \\
+\hline
+NUMVAL(str) & String zu Zahl & MOVE FUNCTION NUMVAL("123") TO NUM. \\
+\hline
+UPPER-CASE(str) & Großbuchstaben & MOVE FUNCTION UPPER-CASE(TEXT) TO UPPER. \\
+\hline
+LOWER-CASE(str) & Kleinbuchstaben & MOVE FUNCTION LOWER-CASE(TEXT) TO LOWER. \\
+\hline
+\end{tabular}
+\end{cobolTableSection}
+
+
+\begin{cobolCodeSection}{cyan!60}{Vollständiges Beispiel}
+\begin{lstlisting}[language=Cobol] 
+    IDENTIFICATION DIVISION.
+    PROGRAM-ID. WORKSHOP-DEMO.
+    ENVIRONMENT DIVISION.
+    CONFIGURATION SECTION.
+    SOURCE-COMPUTER. TECHNISCHE-HOCHSCHULE-MANNHEIM.
+    OBJECT-COMPUTER. TECHNISCHE-HOCHSCHULE-MANNHEIM.
+    DATA DIVISION.
+    WORKING-STORAGE SECTION.
+        01 FRAGE PIC X(30) VALUE "Ist der Kurs vorbei? (JA/NEIN)".
+        01 ANTWORT PIC X(10).
+        01 KURSSTATUS PIC X(15) VALUE "AKTIV".
+    PROCEDURE DIVISION.
+    BEGIN.
+        DISPLAY FRAGE.
+        ACCEPT ANTWORT.
+        IF ANTWORT = "JA"
+            MOVE "FEIERABEND" TO KURSSTATUS
+        DISPLAY "Status: " KURSSTATUS "."
+        ELSE
+            DISPLAY "Der Kurs geht weiter."
+        END-IF.
+        STOP RUN
+\end{lstlisting}
+\end{cobolCodeSection}
