@@ -5,9 +5,9 @@ Erweitern Sie das bereitgestellte COBOL-Programm so, dass auftretende Fehler nic
 
 ### Randbedingungen
 - Das Ergebnis des Programms soll in ein Dokument geschrieben werden.
-- Das Dokument soll vom Typ “.log” sein.
+- Das Dokument soll vom Typ “.dat” sein.
 - Die Eingabedatei ist dieselbe wie im Aufgabenteil a).
-- Erzeugte Ausgabe soll ähnlich zur gezeigten Konsolenausgabe sein.
+- Erzeugte Ausgabe soll ähnlich zur gezeigten Konsolenausgabe sein (siehe Präsentationtsfolien).
 
 ============================================
 
