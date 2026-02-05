@@ -42,17 +42,19 @@ Wir bitten um die Nutzung der Hochschulrechner, da hier die benötigte COBOL-Umg
 2. Navigieren Sie im Terminal zu einer Lektion X (z.B. `cd X-Lesson`).
 3. Geben Sie folgenden Befehl ein, um das COBOL-Programm zu kompilieren:
 ```bash
-Cobc -x hello_world_loesung.cbl
+cobc -x <Dateiname>.cbl
 ```
 4. Führen Sie das kompilierte Programm mit folgendem Befehl aus:
 ```bash
-./[Name der ausführbaren Datei]
+./<Dateiname>
 ```
 
 Hinweis:
+- Die spitzen Klammern `< >` dienen lediglich als Platzhalter und sind **nicht**
+Teil des auszuführenden Befehls.
 - `X` steht für die Lektion, die Sie bearbeiten möchten (z.B. `0`,`1`,`2`,`3` oder `4`).
 - Mit `ls` können Sie die Dateien im aktuellen Verzeichnis auflisten.
-- Der Name der ausführbaren Datei entspricht der COBOL-Quelldatei ohne die `.cbl`-Endung (z.B. `hello_world_loesung`).
+- Der Name der ausführbaren Datei entspricht der COBOL-Quelldatei ohne die `.cbl`-Endung (z.B. `hello_world_aufgabe` in Lektion 0).
 
 ---
 
