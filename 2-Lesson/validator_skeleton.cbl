@@ -41,7 +41,7 @@ MAIN.
 
 
 *> ================================================================
-*> #5 Datei-Handling
+*> #4.1 Datei-Handling
 *> ================================================================
 OPEN-FILES.
 *> Datei öffnen.
@@ -54,7 +54,7 @@ READ-NEXT.
 
 
 *> ================================================================
-*> #6 Zeilenverarbeitung
+*> #4.2 Zeilenverarbeitung, 4.2.1 Lesen und Vorbereiten
 *> ================================================================
 PREPARE-LINE.
 *> Zeile bereinigen.
@@ -70,7 +70,7 @@ HANDLE-OK.
 
 
 *> ================================================================
-*> #7 Validierungen
+*> #4.2.2 Validierungen, 4.2.3 Fehlerbehandlung und Zähler
 *> ================================================================
 PRUEFE-NAME.
 *> Namenscheck.
@@ -86,7 +86,7 @@ PRUEFE-GEBURTSDATUM.
 
 
 *> ================================================================
-*> #8 Logging / Fehlerausgabe
+*> #4.3 Logging / Fehlerausgabe
 *> ================================================================
 LOG-ERROR.
 *> Fehler auf Konsole anzeigen.
