@@ -8,7 +8,7 @@
            SELECT BUCHUNGEN ASSIGN TO "BUCHUNGEN.DAT"
                ORGANIZATION IS LINE SEQUENTIAL
                FILE STATUS IS FSIN.
-           SELECT FEHLER-LOG ASSIGN TO "buchungen-fehler.dat"    *> (geändert)
+           SELECT FEHLER-LOG ASSIGN TO "buchungen-fehler.dat"
                ORGANIZATION IS LINE SEQUENTIAL
                FILE STATUS IS FSERR.
 
@@ -17,7 +17,7 @@
        FD BUCHUNGEN.
        01 BUCHUNG-LINE                PIC X(256).
        FD FEHLER-LOG.
-       01 FEHLER-RECORD               PIC X(600).               *> (geändert)
+       01 FEHLER-RECORD               PIC X(600).
 
        WORKING-STORAGE SECTION.
        77 FSIN                        PIC XX VALUE SPACES.
@@ -69,7 +69,7 @@
                GOBACK
            END-IF
            IF FSERR NOT = "00"
-               DISPLAY "Fehler beim Oeffnen FEHLER.LOG, Status=" FSERR
+               DISPLAY "Fehler beim Oeffnen FEHLER-LOG, Status=" FSERR
                GOBACK
            END-IF
            DISPLAY "Starte Validierung der Buchungen...".
@@ -84,47 +84,49 @@
                    *> Tabs in Spaces wandeln (nur zur Sicherheit)
                    INSPECT LINE-TRIM REPLACING ALL X"09" BY " "
                    *> Leere Zeilen komplett überspringen
-                    IF LINE-TRIM = SPACES
-                    OR LENGTH OF FUNCTION TRIM(LINE-TRIM) = 0
-                        EXIT PERFORM CYCLE
-                    END-IF
+                   IF LINE-TRIM = SPACES
+                   OR FUNCTION LENGTH(FUNCTION TRIM(LINE-TRIM)) = 0
+                       CONTINUE
+                   ELSE
+                       *> --- Felder per Leerzeichen splitten ---
+                       MOVE SPACES TO WS-VORNAME WS-NACHNAME
+                                      WS-STUNDEN-RAW WS-GEHALT-RAW WS-GEBURT-RAW
+                       UNSTRING LINE-TRIM
+                           DELIMITED BY ALL SPACE
+                           INTO WS-VORNAME
+                                WS-NACHNAME
+                                WS-STUNDEN-RAW
+                                WS-GEHALT-RAW
+                                WS-GEBURT-RAW
+                       END-UNSTRING
 
-                   *> --- Felder per Leerzeichen splitten ---
-                   MOVE SPACES TO WS-VORNAME WS-NACHNAME
-                                  WS-STUNDEN-RAW WS-GEHALT-RAW WS-GEBURT-RAW
-                   UNSTRING LINE-TRIM
-                       DELIMITED BY ALL SPACE
-                       INTO WS-VORNAME
-                            WS-NACHNAME
-                            WS-STUNDEN-RAW
-                            WS-GEHALT-RAW
-                            WS-GEBURT-RAW
-                   END-UNSTRING
+                       *> Namen zusammenbauen (für Ausgabe)
+                       MOVE FUNCTION TRIM(WS-VORNAME) TO WS-NAME-ZUS
+                       MOVE FUNCTION LENGTH(FUNCTION TRIM(WS-NAME-ZUS))
+                            TO WS-J
+                       ADD 1 TO WS-J
+                       STRING
+                           " " DELIMITED BY SIZE
+                           FUNCTION TRIM(WS-NACHNAME) DELIMITED BY SIZE
+                           INTO WS-NAME-ZUS
+                           WITH POINTER WS-J
+                       END-STRING
 
-                   *> Namen zusammenbauen (für Ausgabe)
-                   MOVE FUNCTION TRIM(WS-VORNAME) TO WS-NAME-ZUS
-                   MOVE 1 TO WS-J
-                   STRING
-                       " " DELIMITED BY SIZE
-                       FUNCTION TRIM(WS-NACHNAME) DELIMITED BY SIZE
-                       INTO WS-NAME-ZUS
-                       WITH POINTER WS-J
-                   END-STRING
+                       MOVE "N" TO WS-ERR-FLAG
 
-                   MOVE "N" TO WS-ERR-FLAG
+                       *> ==== VALIDIERUNGEN ====
+                       PERFORM PRUEFE-NAME
+                       PERFORM PRUEFE-STUNDEN
+                       PERFORM PRUEFE-GEHALT
+                       PERFORM PRUEFE-GEBURTSDATUM
 
-                   *> ==== VALIDIERUNGEN ====
-                   PERFORM PRUEFE-NAME
-                   PERFORM PRUEFE-STUNDEN
-                   PERFORM PRUEFE-GEHALT
-                   PERFORM PRUEFE-GEBURTSDATUM
-
-                   IF WS-ERR-FLAG = "N"
-                       DISPLAY "OK: " FUNCTION TRIM(WS-NAME-ZUS)
-                               " | Stunden=" FUNCTION TRIM(WS-STUNDEN-RAW)
-                               " | Gehalt=" FUNCTION TRIM(WS-GEHALT-RAW)
-                               " | Geburtsdatum=" FUNCTION TRIM(WS-GEBURT-RAW)
-                       ADD 1 TO CNT-OK
+                       IF WS-ERR-FLAG = "N"
+                           DISPLAY "OK: " FUNCTION TRIM(WS-NAME-ZUS)
+                                   " | Stunden=" FUNCTION TRIM(WS-STUNDEN-RAW)
+                                   " | Gehalt=" FUNCTION TRIM(WS-GEHALT-RAW)
+                                   " | Geburtsdatum=" FUNCTION TRIM(WS-GEBURT-RAW)
+                           ADD 1 TO CNT-OK
+                       END-IF
                    END-IF
                END-IF
            END-PERFORM
@@ -140,7 +142,7 @@
        *>--------------------------------------------------------------
        PRUEFE-NAME.
            MOVE FUNCTION TRIM(WS-NAME-ZUS) TO WS-NAME-ZUS
-           MOVE LENGTH OF FUNCTION TRIM(WS-NAME-ZUS) TO WS-LEN
+           MOVE FUNCTION LENGTH(FUNCTION TRIM(WS-NAME-ZUS)) TO WS-LEN
            MOVE 1 TO WS-I
            PERFORM VARYING WS-I FROM 1 BY 1 UNTIL WS-I > WS-LEN
                MOVE 0 TO WS-CNT
@@ -173,10 +175,11 @@
                EXIT PARAGRAPH
            END-IF
 
-           MOVE LENGTH OF FUNCTION TRIM(WS-STUNDEN-RAW) TO WS-LEN
+           MOVE FUNCTION LENGTH(FUNCTION TRIM(WS-STUNDEN-RAW)) TO WS-LEN
 
            *> Buchstaben? (per Schleife)
-           PERFORM VARYING WS-I FROM 1 BY 1 UNTIL WS-I > WS-LEN OR WS-ERR-FLAG = "Y"
+           PERFORM VARYING WS-I FROM 1 BY 1
+                   UNTIL WS-I > WS-LEN OR WS-ERR-FLAG = "Y"
                IF WS-STUNDEN-RAW(WS-I:1) ALPHABETIC
                    MOVE "Stundenanzahl" TO ARG-FELD
                    MOVE "alphanumerisch (Buchstaben enthalten)" TO ARG-MSG
@@ -241,8 +244,9 @@
            END-IF
 
            *> Buchstaben? (per Schleife)
-           MOVE LENGTH OF FUNCTION TRIM(WS-GEHALT-RAW) TO WS-LEN
-           PERFORM VARYING WS-I FROM 1 BY 1 UNTIL WS-I > WS-LEN OR WS-ERR-FLAG = "Y"
+           MOVE FUNCTION LENGTH(FUNCTION TRIM(WS-GEHALT-RAW)) TO WS-LEN
+           PERFORM VARYING WS-I FROM 1 BY 1
+                   UNTIL WS-I > WS-LEN OR WS-ERR-FLAG = "Y"
                IF WS-GEHALT-RAW(WS-I:1) ALPHABETIC
                    MOVE "Monatsgehalt" TO ARG-FELD
                    MOVE "alphanumerisch (Buchstaben enthalten)" TO ARG-MSG
@@ -281,7 +285,7 @@
        *>--------------------------------------------------------------
        PRUEFE-GEBURTSDATUM.
            MOVE FUNCTION TRIM(WS-GEBURT-RAW) TO WS-GEBURT-RAW
-           MOVE LENGTH OF FUNCTION TRIM(WS-GEBURT-RAW) TO WS-LEN
+           MOVE FUNCTION LENGTH(FUNCTION TRIM(WS-GEBURT-RAW)) TO WS-LEN
 
            IF WS-LEN NOT = 10
                MOVE "Geburtsdatum" TO ARG-FELD
@@ -343,8 +347,9 @@
            EVALUATE WS-MONAT
                WHEN 1  MOVE 31 TO WS-TAG-MAX
                WHEN 2
-                   IF ( FUNCTION MOD(WS-JAHR 400) = 0 )
-                      OR ( FUNCTION MOD(WS-JAHR 4) = 0 AND FUNCTION MOD(WS-JAHR 100) NOT = 0 )
+                   IF ( FUNCTION MOD(WS-JAHR, 400) = 0 )
+                      OR ( FUNCTION MOD(WS-JAHR, 4) = 0
+                           AND FUNCTION MOD(WS-JAHR, 100) NOT = 0 )
                        MOVE 29 TO WS-TAG-MAX
                    ELSE
                        MOVE 28 TO WS-TAG-MAX
