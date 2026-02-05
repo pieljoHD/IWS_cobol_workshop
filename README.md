@@ -3,8 +3,7 @@
 Der Informatik-Workshop COBOL besteht aus **vier Lektionen** mit praxisorientierten Aufgaben.
 
 **Hinweis:**  
-Die [Präsentationsfolien](./IWS-COBOL-Präsentation.pdf) werden vorgestellt. Zur Unterstützung bei der Bearbeitung der Aufgabe steht Ihnen das große
-[Cheatsheet](./Cheatsheet.pdf) parallel zur Verfügung.
+Nutzen Sie zur Bearbeitung der Lektionen gerne das Cheatsheet und die Präsentationsfolien, die im IWS-Forum zur Verfügung gestellt wurden.
 
 ### [📁 0-Lesson - Hello-World in COBOL](./0-Lesson)
 
