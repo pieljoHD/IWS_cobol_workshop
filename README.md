@@ -39,7 +39,7 @@ Archiv für Entwürfe und verworfene Ideen — **nicht relevant für den Worksho
 Wir bitten um die Nutzung der Hochschulrechner, da hier die benötigte COBOL-Umgebung bereits vorinstalliert ist.
 
 1. Öffen Sie das Terminal.
-2. Navigieren Sie im Terminal zu einer Lektion X (z.B. `cd X-Lesson`).
+2. Navigieren Sie im Terminal zu einer Lektion (z.B. `cd 0-Lesson`).
 3. Geben Sie folgenden Befehl ein, um das COBOL-Programm zu kompilieren:
 ```bash
 cobc -x <Dateiname>.cbl
@@ -52,7 +52,6 @@ cobc -x <Dateiname>.cbl
 Hinweis:
 - Die spitzen Klammern `< >` dienen lediglich als Platzhalter und sind **nicht**
 Teil des auszuführenden Befehls.
-- `X` steht für die Lektion, die Sie bearbeiten möchten (z.B. `0`,`1`,`2`,`3` oder `4`).
 - Mit `ls` können Sie die Dateien im aktuellen Verzeichnis auflisten.
 - Der Name der ausführbaren Datei entspricht der COBOL-Quelldatei ohne die `.cbl`-Endung (z.B. `hello_world_aufgabe` in Lektion 0).
 
