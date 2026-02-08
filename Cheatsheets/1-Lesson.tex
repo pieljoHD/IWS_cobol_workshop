@@ -34,6 +34,30 @@
 \end{cobolCodeSection}
 
 
+\begin{cobolCodeSection}{cyan!60}{Schleife (Grundmuster)}
+\begin{lstlisting}[language=Cobol] 
+  PERFORM UNTIL ABBRUCH = "Y"
+      DISPLAY "Schleife aktiv"
+  END-PERFORM
+\end{lstlisting}
+\end{cobolCodeSection}
+
+\begin{cobolCodeSection}{cyan!60}{Ausgabe formatieren (Währungsformat)}
+\begin{lstlisting}[language=Cobol] 
+  PRINT-GESAMT-SUMME     PIC $*,*.99.
+\end{lstlisting}
+\end{cobolCodeSection}
+
+
+
+\begin{cobolCodeSection}{cyan!60}{Substring extrahieren und in Variable speichern}
+\begin{lstlisting}[language=Cobol] 
+  MOVE BUCHUNG-LINE(Startposition:Laenge) TO VARIABLENNAME. 
+\end{lstlisting}
+\end{cobolCodeSection}
+
+
+
 \begin{cobolCodeSection}{cyan!60}{Berechnungen}
 \begin{lstlisting}[language=Cobol] 
   COMPUTE VARIABLENNAME = X + Y * Z.
